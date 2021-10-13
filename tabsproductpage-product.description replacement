@@ -1,0 +1,43 @@
+<div class="tab-customize">
+    <button class="tablinks-cus" onclick="openTab(event, 'tab-1')" id="tab-cus-active">Information</button>
+    <button class="tablinks-cus" onclick="openTab(event, 'tab-2')">Shipping</button>
+    <button class="tablinks-cus" onclick="openTab(event, 'tab-3')">Policy</button>
+</div>
+<!-- Tab content -->
+<div id="tab-1" class="tabcontent-cus">
+    {{ product.description }}
+</div>
+<div id="tab-2" class="tabcontent-cus ">
+    {{ pages.shipping.content }}
+</div>
+<div id="tab-3" class="tabcontent-cus ">
+    {{ pages.policy.content }}
+</div>
+<style>
+    .tab-customize {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+    }
+    .tab-customize button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+    }
+    .tab-customize button:hover {
+        background-color: #ddd;
+    }
+    .tab-customize button.active {
+        background-color: #ccc;
+    }
+    .tabcontent-cus {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+    }
+</style>
