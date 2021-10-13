@@ -1,0 +1,21 @@
+<div class="accordion" id="section1">Question 1<span></span>
+</div>
+<div class="container">
+<div class="content">
+<p>No.</p>
+</div>
+</div>
+<div class="accordion" id="section2">Question 2<span></span>
+</div>
+<div class="container">
+<div class="content">
+<p>This is the answer to question 2.</p>
+</div>
+</div>
+<div class="accordion" id="section3">Question 3<span></span>
+</div>
+<div class="container">
+<div class="content">
+<p>This is the answer to question 3.</p>
+</div>
+</div>
