@@ -1,0 +1,87 @@
+{% capture time_check %}
+    {% for tag in product.tags %}
+        {% if tag contains 'Time_' %}
+            {% assign tag_time = tag | split : 'Time_' | last %}
+            {{ tag_time }}
+        {% endif %}
+    {% endfor %}
+{% endcapture %}
+{% if tag_time %}
+    <div class="countdown_wrap">
+        <div class="countdown_time" id="js_set_time">
+            <div class="timer-block">
+                <span class="countdown_number js-days">00</span>
+                <span class="countdown_title">Days</span>
+            </div>
+            <div class="timer-block">
+                <span class="countdown_number js-hours">00</span>
+                <span class="countdown_title">Hours</span>
+            </div>
+            <div class="timer-block">
+                <span class="countdown_number js-minutes">00</span>
+                <span class="countdown_title">Minutes</span>
+            </div>
+            <div class="timer-block">
+                <span class="countdown_number js-seconds">00</span>
+                <span class="countdown_title">Seconds</span>
+            </div>
+        </div>
+    </div>
+    <style>
+        .countdown_time {
+            margin-top: 30px;
+            background: #efefef;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .countdown_time .timer-block {
+            width: 25%;
+        }
+        .countdown_time .timer-block span {
+            display: block;
+            text-align: center;
+        }
+    </style>
+    <script type="text/javascript">
+        var settime = "{{ tag_time }}";
+        (function () {
+            if (settime.length > 0) {
+                var countDownDate = new Date(settime).getTime();
+                var x = setInterval(function () { // Get todays date and time
+                    var now = new Date().getTime();
+                    // Find the distance between now an the count down date
+                    var distance = countDownDate - now;
+                    // Time calculations for days, hours, minutes and seconds
+                    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    if (days < 10) {
+                        var days = '0' + days;
+                    } else {
+                        days = days;
+                    }
+                    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    if (hours < 10) {
+                        var hours = '0' + hours;
+                    } else {
+                        hours = hours;
+                    }
+                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    if (minutes < 10) {
+                        var minutes = '0' + minutes;
+                    } else {
+                        minutes = minutes;
+                    }
+                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                    document.querySelector('.js-days').innerText = days;
+                    document.querySelector('.js-hours').innerText = hours;
+                    document.querySelector('.js-minutes').innerText = minutes;
+                    document.querySelector('.js-seconds').innerText = seconds;
+                    if (distance < 0) {
+                        clearInterval(x);
+                        document.getElementById("js_set_time").innerHTML = "Out of date";
+                    }
+                }, 1000);
+            }
+        })();
+    </script>
+{% endif %}
